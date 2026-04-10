@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infinito Imperium | FINAL GOD LEVEL</title>
+
+<style>
+html{scroll-behavior:smooth}
+body{
+margin:0;
+background:radial-gradient(circle at top,#020202,#000);
+color:#FFD700;
+font-family:Arial,Helvetica,sans-serif;
+overflow-x:hidden;
+}
+
+/* STARS */
+body::before{
+content:"";
+position:fixed;
+width:300%;
+height:300%;
+background:radial-gradient(white 1px,transparent 1px);
+background-size:70px 70px;
+opacity:.05;
+animation:stars 150s linear infinite;
+}
+@keyframes stars{to{transform:translate(-600px,-600px)}}
+
+/* NAV */
+nav{
+position:fixed;
+top:0;width:100%;
+display:flex;justify-content:center;gap:40px;
+padding:15px;
+background:rgba(0,0,0,.8);
+backdrop-filter:blur(15px);
+z-index:1000;
+}
+nav a{color:gold;text-decoration:none;font-size:14px}
+
+/* HEADER */
+header{
+padding:180px 20px 120px;
+text-align:center;
+}
+.logo{
+font-size:120px;
+background:linear-gradient(90deg,#FFD700,#FFF,#FFD700);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 100px gold;
+}
+.subtitle{color:#bbb;font-size:20px}
+
+/* SECTIONS */
+.section{
+padding:140px 20px;
+text-align:center;
+opacity:0;
+transform:translateY(80px);
+transition:1s;
+}
+.section.visible{opacity:1;transform:translateY(0)}
+
+/* MENU */
+.menu{
+display:flex;
+overflow-x:auto;
+gap:40px;
+padding:40px;
+}
+.card{
+min-width:320px;
+background:rgba(255,215,0,.05);
+border:1px solid rgba(255,215,0,.2);
+padding:40px;
+border-radius:25px;
+transition:.4s;
+}
+.card:hover{transform:scale(1.1);box-shadow:0 0 80px gold}
+
+.button{
+padding:12px 30px;
+border:1px solid gold;
+background:transparent;
+color:gold;
+cursor:pointer;
+margin-top:15px;
+}
+.button:hover{background:gold;color:black}
+
+/* CART */
+.cart{
+position:fixed;
+bottom:20px;right:20px;
+background:#111;
+border:1px solid gold;
+padding:20px;
+border-radius:15px;
+width:200px;
+}
+
+/* MODAL */
+.modal{
+position:fixed;
+top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,.9);
+display:none;
+justify-content:center;align-items:center;
+}
+.modal-content{
+background:#111;
+padding:40px;
+border:1px solid gold;
+text-align:center;
+}
+
+/* EXTRA */
+.badge{
+color:black;background:gold;padding:5px 10px;border-radius:10px;font-size:12px;
+}
+
+footer{
+padding:60px;
+text-align:center;
+color:#aaa;
+border-top:1px solid rgba(255,215,0,.2);
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<a href="#menu">Menu</a>
+<a href="#drinks">Drinks</a>
+<a href="#vip">VIP</a>
+<a href="#about">About</a>
+</nav>
+
+<header>
+<div class="logo">INFINITO IMPERIUM</div>
+<p class="subtitle">The Final Luxury Experience Beyond Reality</p>
+</header>
+
+<div class="section" id="vip">
+<h2>VIP ACCESS</h2>
+<button class="button" onclick="connectNFT()">ENTER VIP</button>
+<p id="status"></p>
+</div>
+
+<div class="section" id="menu">
+<h2>ULTIMATE MENU</h2>
+<div class="menu">
+<div class="card"><span class="badge">RARE</span><h3>AUREO</h3><p>$10Q</p><button class="button" onclick="buy('Aureo',9999999999999999)">BUY</button></div>
+<div class="card"><h3>IMPERIALE</h3><p>$500K</p><button class="button" onclick="buy('Imperiale',500000)">BUY</button></div>
+<div class="card"><h3>SUPREMO</h3><p>$750K</p><button class="button" onclick="buy('Supremo',750000)">BUY</button></div>
+<div class="card"><h3>DIVINO</h3><p>$2M</p><button class="button" onclick="buy('Divino',2000000)">BUY</button></div>
+<div class="card"><span class="badge">LIMITED</span><h3>INFINITY</h3><p>$???</p><button class="button" onclick="buy('Infinity',999999999)">BUY</button></div>
+</div>
+</div>
+
+<div class="section" id="drinks">
+<h2>GOLD DRINKS</h2>
+<div class="menu">
+<div class="card"><h3>Gold Water</h3><button class="button" onclick="buy('Gold Water',5000)">BUY</button></div>
+<div class="card"><h3>Gold Coffee</h3><button class="button" onclick="buy('Gold Coffee',10000)">BUY</button></div>
+<div class="card"><h3>Royal Elixir</h3><button class="button" onclick="buy('Royal Elixir',50000)">BUY</button></div>
+</div>
+</div>
+
+<div class="section" id="about">
+<h2>ABOUT</h2>
+<p>This is not food. This is power. This is legacy.</p>
+</div>
+
+<div class="modal" id="modal">
+<div class="modal-content">
+<h2 id="item"></h2>
+<p>Confirm Purchase?</p>
+<button class="button" onclick="confirmBuy()">CONFIRM</button>
+<button class="button" onclick="closeModal()">CANCEL</button>
+</div>
+</div>
+
+<div class="cart">
+<h4>CART</h4>
+<p id="cartItems">0 items</p>
+<p id="total">$0</p>
+</div>
+
+<footer>
+<p>© INFINITO IMPERIUM • FINAL VERSION</p>
+</footer>
+
+<script>
+
+// NFT LOGIN
+async function connectNFT(){
+if(window.ethereum){
+try{await ethereum.request({method:'eth_requestAccounts'});
+document.getElementById('status').innerText='ACCESS GRANTED';}
+catch{document.getElementById('status').innerText='DENIED';}
+}else{document.getElementById('status').innerText='MetaMask Required';}
+}
+
+// SCROLL ANIMATION
+const sections=document.querySelectorAll('.section');
+window.addEventListener('scroll',()=>{
+sections.forEach(s=>{
+if(s.getBoundingClientRect().top<window.innerHeight-100){s.classList.add('visible')}
+})})
+
+// CART
+let cartCount=0;
+let total=0;
+let selectedItem="";
+let selectedPrice=0;
+
+function buy(name,price){
+selectedItem=name;
+selectedPrice=price;
+document.getElementById('item').innerText=name;
+document.getElementById('modal').style.display='flex';
+}
+
+function closeModal(){document.getElementById('modal').style.display='none'}
+
+function confirmBuy(){
+cartCount++;
+total+=selectedPrice;
+document.getElementById('cartItems').innerText=cartCount+" items";
+document.getElementById('total').innerText="$"+total;
+alert(selectedItem+" added to cart 💎");
+closeModal();
+}
+
+</script>
+
+</body>
+                                                         </html>
