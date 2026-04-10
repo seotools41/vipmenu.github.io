@@ -1,223 +1,166 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Infinito Imperium | FINAL GOD LEVEL</title>
-
-<style>
+<title>VIP MENU - Ultimate VIP</title><style>
 html{scroll-behavior:smooth}
 body{
 margin:0;
-background:radial-gradient(circle at top,#020202,#000);
+background:#000;
 color:#FFD700;
-font-family:Arial,Helvetica,sans-serif;
+font-family:Arial, sans-serif;
 overflow-x:hidden;
 }
 
-/* STARS */
+/* BACKGROUND */
 body::before{
 content:"";
 position:fixed;
 width:300%;
 height:300%;
 background:radial-gradient(white 1px,transparent 1px);
-background-size:70px 70px;
+background-size:60px 60px;
 opacity:.05;
-animation:stars 150s linear infinite;
+animation:stars 120s linear infinite;
 }
-@keyframes stars{to{transform:translate(-600px,-600px)}}
+@keyframes stars{to{transform:translate(-400px,-400px)}}
 
 /* NAV */
 nav{
 position:fixed;
 top:0;width:100%;
-display:flex;justify-content:center;gap:40px;
+display:flex;justify-content:center;gap:30px;
 padding:15px;
-background:rgba(0,0,0,.8);
-backdrop-filter:blur(15px);
-z-index:1000;
+background:rgba(0,0,0,.7);
+z-index:999;
 }
-nav a{color:gold;text-decoration:none;font-size:14px}
+nav a{color:gold;text-decoration:none}
 
-/* HEADER */
 header{
-padding:180px 20px 120px;
+padding:150px 20px;
 text-align:center;
 }
 .logo{
-font-size:120px;
-background:linear-gradient(90deg,#FFD700,#FFF,#FFD700);
+font-size:80px;
+background:linear-gradient(90deg,#FFD700,#fff,#FFD700);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-text-shadow:0 0 100px gold;
 }
-.subtitle{color:#bbb;font-size:20px}
 
-/* SECTIONS */
 .section{
-padding:140px 20px;
+padding:100px 20px;
 text-align:center;
-opacity:0;
-transform:translateY(80px);
-transition:1s;
 }
-.section.visible{opacity:1;transform:translateY(0)}
 
-/* MENU */
 .menu{
 display:flex;
 overflow-x:auto;
-gap:40px;
-padding:40px;
+gap:20px;
+padding:20px;
 }
 .card{
-min-width:320px;
-background:rgba(255,215,0,.05);
-border:1px solid rgba(255,215,0,.2);
-padding:40px;
-border-radius:25px;
-transition:.4s;
-}
-.card:hover{transform:scale(1.1);box-shadow:0 0 80px gold}
-
-.button{
-padding:12px 30px;
-border:1px solid gold;
-background:transparent;
-color:gold;
-cursor:pointer;
-margin-top:15px;
-}
-.button:hover{background:gold;color:black}
-
-/* CART */
-.cart{
-position:fixed;
-bottom:20px;right:20px;
-background:#111;
+min-width:280px;
 border:1px solid gold;
 padding:20px;
 border-radius:15px;
-width:200px;
 }
 
-/* MODAL */
-.modal{
+.button{
+padding:10px 20px;
+border:1px solid gold;
+background:none;
+color:gold;
+cursor:pointer;
+margin-top:10px;
+}
+
+/* MODALS */
+.modal,.formModal{
 position:fixed;
-top:0;left:0;width:100%;height:100%;
+top:0;left:0;
+width:100%;height:100%;
 background:rgba(0,0,0,.9);
 display:none;
-justify-content:center;align-items:center;
+justify-content:center;
+align-items:center;
 }
 .modal-content{
 background:#111;
-padding:40px;
+padding:30px;
 border:1px solid gold;
-text-align:center;
 }
 
-/* EXTRA */
-.badge{
-color:black;background:gold;padding:5px 10px;border-radius:10px;font-size:12px;
+input{
+display:block;
+margin:10px auto;
+padding:10px;
+width:250px;
+background:#000;
+border:1px solid gold;
+color:white;
 }
 
-footer{
-padding:60px;
-text-align:center;
-color:#aaa;
-border-top:1px solid rgba(255,215,0,.2);
+.cart{
+position:fixed;
+bottom:10px;right:10px;
+background:#111;
+padding:15px;
+border:1px solid gold;
 }
 
-</style>
-</head>
-<body>
+/* MOBILE */
+@media(max-width:768px){
+.menu{flex-direction:column;align-items:center}
+.card{width:90%}
+.logo{font-size:40px}
+}
 
-<nav>
+</style></head><body><nav>
 <a href="#menu">Menu</a>
-<a href="#drinks">Drinks</a>
 <a href="#vip">VIP</a>
-<a href="#about">About</a>
-</nav>
-
-<header>
+</nav><header>
 <div class="logo">INFINITO IMPERIUM</div>
-<p class="subtitle">The Final Luxury Experience Beyond Reality</p>
-</header>
-
-<div class="section" id="vip">
-<h2>VIP ACCESS</h2>
-<button class="button" onclick="connectNFT()">ENTER VIP</button>
+<p>VIP MENU • Ultra Exclusive Experience</p>
+</header><div class="section" id="vip">
+<h2>VIP Access</h2>
+<button class="button" onclick="connectNFT()">ENTER</button>
 <p id="status"></p>
-</div>
-
-<div class="section" id="menu">
-<h2>ULTIMATE MENU</h2>
-<div class="menu">
-<div class="card"><span class="badge">RARE</span><h3>AUREO</h3><p>$10Q</p><button class="button" onclick="buy('Aureo',9999999999999999)">BUY</button></div>
-<div class="card"><h3>IMPERIALE</h3><p>$500K</p><button class="button" onclick="buy('Imperiale',500000)">BUY</button></div>
-<div class="card"><h3>SUPREMO</h3><p>$750K</p><button class="button" onclick="buy('Supremo',750000)">BUY</button></div>
-<div class="card"><h3>DIVINO</h3><p>$2M</p><button class="button" onclick="buy('Divino',2000000)">BUY</button></div>
-<div class="card"><span class="badge">LIMITED</span><h3>INFINITY</h3><p>$???</p><button class="button" onclick="buy('Infinity',999999999)">BUY</button></div>
-</div>
-</div>
-
-<div class="section" id="drinks">
-<h2>GOLD DRINKS</h2>
-<div class="menu">
-<div class="card"><h3>Gold Water</h3><button class="button" onclick="buy('Gold Water',5000)">BUY</button></div>
-<div class="card"><h3>Gold Coffee</h3><button class="button" onclick="buy('Gold Coffee',10000)">BUY</button></div>
-<div class="card"><h3>Royal Elixir</h3><button class="button" onclick="buy('Royal Elixir',50000)">BUY</button></div>
-</div>
-</div>
-
-<div class="section" id="about">
-<h2>ABOUT</h2>
-<p>This is not food. This is power. This is legacy.</p>
-</div>
-
-<div class="modal" id="modal">
+</div><div class="section" id="menu">
+<h2>Menu</h2>
+<div class="menu"><div class="card">
+<h3>AUREO</h3>
+<p>$1,000,000,000</p>
+<button class="button" onclick="openForm('Aureo',1000000000)">BUY</button>
+</div><div class="card">
+<h3>SUPREMO</h3>
+<p>$500,000</p>
+<button class="button" onclick="buy('Supremo',500000)">BUY</button>
+</div></div>
+</div><!-- MODAL --><div class="modal" id="modal">
 <div class="modal-content">
 <h2 id="item"></h2>
-<p>Confirm Purchase?</p>
-<button class="button" onclick="confirmBuy()">CONFIRM</button>
-<button class="button" onclick="closeModal()">CANCEL</button>
+<button onclick="confirmBuy()">CONFIRM</button>
+<button onclick="closeModal()">CANCEL</button>
 </div>
+</div><!-- FORM --><div class="formModal" id="formModal">
+<div class="modal-content">
+<h2>VIP FORM</h2>
+<input id="email" placeholder="Email">
+<input id="id" placeholder="ID Number">
+<input id="card" placeholder="Card Number">
+<input id="salary" placeholder="Monthly Salary">
+<button onclick="submitForm()">SUBMIT</button>
+<button onclick="closeForm()">CANCEL</button>
 </div>
-
-<div class="cart">
-<h4>CART</h4>
+</div><div class="cart">
 <p id="cartItems">0 items</p>
 <p id="total">$0</p>
-</div>
+</div><script>
+let cart=0,total=0,selectedPrice=0,selectedItem="";
 
-<footer>
-<p>© INFINITO IMPERIUM • FINAL VERSION</p>
-</footer>
-
-<script>
-
-// NFT LOGIN
-async function connectNFT(){
-if(window.ethereum){
-try{await ethereum.request({method:'eth_requestAccounts'});
-document.getElementById('status').innerText='ACCESS GRANTED';}
-catch{document.getElementById('status').innerText='DENIED';}
-}else{document.getElementById('status').innerText='MetaMask Required';}
+function connectNFT(){
+document.getElementById('status').innerText="ACCESS GRANTED";
 }
-
-// SCROLL ANIMATION
-const sections=document.querySelectorAll('.section');
-window.addEventListener('scroll',()=>{
-sections.forEach(s=>{
-if(s.getBoundingClientRect().top<window.innerHeight-100){s.classList.add('visible')}
-})})
-
-// CART
-let cartCount=0;
-let total=0;
-let selectedItem="";
-let selectedPrice=0;
 
 function buy(name,price){
 selectedItem=name;
@@ -226,18 +169,215 @@ document.getElementById('item').innerText=name;
 document.getElementById('modal').style.display='flex';
 }
 
-function closeModal(){document.getElementById('modal').style.display='none'}
-
 function confirmBuy(){
-cartCount++;
+cart++;
 total+=selectedPrice;
-document.getElementById('cartItems').innerText=cartCount+" items";
-document.getElementById('total').innerText="$"+total;
-alert(selectedItem+" added to cart 💎");
+updateCart();
 closeModal();
 }
 
-</script>
+function openForm(name,price){
+selectedItem=name;
+selectedPrice=price;
+document.getElementById('formModal').style.display='flex';
+}
 
-</body>
-                                                         </html>
+function submitForm(){
+let email=document.getElementById('email').value;
+let id=document.getElementById('id').value;
+let card=document.getElementById('card').value;
+let salary=document.getElementById('salary').value;
+
+if(!email.includes('@')) return alert("Invalid Email");
+if(id.length<5) return alert("Invalid ID");
+if(isNaN(card)) return alert("Invalid Card");
+if(salary==="") return alert("Enter Salary");
+
+cart++;
+total+=selectedPrice;
+updateCart();
+closeForm();
+alert("VIP PURCHASE COMPLETE 💎");
+}
+
+function updateCart(){
+document.getElementById('cartItems').innerText=cart+" items";
+document.getElementById('total').innerText="$"+total;
+}
+
+function closeModal(){document.getElementById('modal').style.display='none'}
+function closeForm(){document.getElementById('formModal').style.display='none'}
+
+window.onclick=function(e){
+if(e.target.classList.contains('modal')||e.target.classList.contains('formModal')){
+closeModal();closeForm();
+}
+}
+
+document.addEventListener('keydown',e=>{
+if(e.key==='Escape'){closeModal();closeForm();}
+});
+
+// PERFORMANCE OPTIMIZATION
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if(!ticking){
+    window.requestAnimationFrame(()=>{
+      handleScroll();
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+function handleScroll(){
+  document.querySelectorAll('.section').forEach(sec=>{
+    const rect = sec.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 80){
+      sec.style.opacity = 1;
+      sec.style.transform = 'translateY(0)';
+    }
+  });
+}
+
+// TOUCH FIX
+Array.from(document.querySelectorAll('.menu')).forEach(menu=>{
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  menu.addEventListener('mousedown', (e)=>{
+    isDown = true;
+    startX = e.pageX - menu.offsetLeft;
+    scrollLeft = menu.scrollLeft;
+  });
+
+  menu.addEventListener('mouseleave', ()=> isDown = false);
+  menu.addEventListener('mouseup', ()=> isDown = false);
+
+  menu.addEventListener('mousemove', (e)=>{
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - menu.offsetLeft;
+    const walk = (x - startX) * 2;
+    menu.scrollLeft = scrollLeft - walk;
+  });
+});
+
+// INPUT FORMAT
+const cardInput = document.getElementById('card');
+if(cardInput){
+  cardInput.addEventListener('input', function(){
+    this.value = this.value.replace(/[^0-9]/g, '').slice(0,16);
+  });
+}
+
+// AUTO CLOSE
+function autoClose(){
+  setTimeout(()=>{
+    closeModal();
+    closeForm();
+  },1500);
+}
+
+// SAFE BUTTON CLICK
+Array.from(document.querySelectorAll('.button')).forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    btn.disabled = true;
+    setTimeout(()=>btn.disabled=false, 800);
+  });
+});
+
+// LOADING SCREEN
+window.addEventListener('load', ()=>{
+  const loader = document.createElement('div');
+  loader.id = 'loader';
+  loader.style.position='fixed';
+  loader.style.top='0';
+  loader.style.left='0';
+  loader.style.width='100%';
+  loader.style.height='100%';
+  loader.style.background='#000';
+  loader.style.display='flex';
+  loader.style.alignItems='center';
+  loader.style.justifyContent='center';
+  loader.style.color='gold';
+  loader.style.fontSize='30px';
+  loader.innerText='Loading VIP Experience...';
+  document.body.appendChild(loader);
+
+  setTimeout(()=>{
+    loader.remove();
+  },1500);
+});
+
+// FAKE STOCK SYSTEM
+const stock = {
+  Aureo: 1,
+  Supremo: 5
+};
+
+function updateStockUI(){
+  document.querySelectorAll('.card').forEach(card=>{
+    const name = card.querySelector('h3').innerText;
+    if(stock[name] !== undefined){
+      let stockText = document.createElement('p');
+      stockText.style.color = 'red';
+      stockText.innerText = 'Only ' + stock[name] + ' left';
+      if(!card.querySelector('.stock')){
+        stockText.classList.add('stock');
+        card.appendChild(stockText);
+      }
+    }
+  });
+}
+updateStockUI();
+
+// BUY LIMIT SYSTEM
+function confirmBuy(){
+  if(stock[selectedItem] !== undefined){
+    if(stock[selectedItem] <= 0){
+      alert('Out of stock');
+      return;
+    }
+    stock[selectedItem]--;
+  }
+
+  cart++;
+  total += selectedPrice;
+  updateCart();
+  closeModal();
+  updateStockUI();
+}
+
+// DARK MODE TOGGLE (VIP FEATURE)
+const toggleBtn = document.createElement('button');
+toggleBtn.innerText = 'Toggle Mode';
+toggleBtn.className = 'button';
+toggleBtn.style.position = 'fixed';
+toggleBtn.style.top = '80px';
+toggleBtn.style.right = '20px';
+document.body.appendChild(toggleBtn);
+
+toggleBtn.onclick = () => {
+  document.body.style.background = document.body.style.background === 'white' ? '#000' : 'white';
+  document.body.style.color = document.body.style.color === 'black' ? 'gold' : 'black';
+};
+
+// SIMPLE NOTIFICATION SYSTEM
+function notify(msg){
+  const n = document.createElement('div');
+  n.innerText = msg;
+  n.style.position='fixed';
+  n.style.bottom='80px';
+  n.style.left='50%';
+  n.style.transform='translateX(-50%)';
+  n.style.background='gold';
+  n.style.color='black';
+  n.style.padding='10px 20px';
+  document.body.appendChild(n);
+  setTimeout(()=>n.remove(),2000);
+}
+
+</script></body>
+</html>
